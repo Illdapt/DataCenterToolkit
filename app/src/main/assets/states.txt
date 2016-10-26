@@ -1,0 +1,51 @@
+Alabama,0.0918
+Alaska,0.1630
+Arizona,0.0981
+Arkansas,0.0762
+California,0.1350
+Colorado,0.0939
+Connecticut,0.1550
+Delaware,0.1110
+District of Columbia,0.1190
+Florida,0.1040
+Georgia,0.0937
+Hawaii,0.3400
+Idaho,0.0692
+Illinois,0.0840
+Indiana,0.0829
+Iowa,0.0771
+Kansas,0.0933
+Kentucky,0.0726
+Louisiana,0.0690
+Maine,0.1180
+Maryland,0.1130
+Massachusetts,0.1380
+Michigan,0.1098
+Minnesota,0.0886
+Mississippi,0.0860
+Missouri,0.0853
+Montana,0.0825
+Nebraska,0.0837
+Nevada,0.0895
+New Hampshire,0.1420
+New Jersey,0.1370
+New Mexico,0.0883
+New York,0.1520
+North Carolina,0.0915
+North Dakota,0.0783
+Ohio,0.0912
+Oklahoma,0.0754
+Oregon,0.0821
+Pennsylvania,0.0991
+Rhode Island,0.1270
+South Carolina,0.0910
+South Dakota,0.0849
+Tennessee,0.0927
+Texas,0.0855
+Utah,0.0784
+Vermont,0.1420
+Virginia,0.0907
+Washington,0.0694
+West Virginia,0.0814
+Wisconsin,0.1030
+Wyoming,0.0719

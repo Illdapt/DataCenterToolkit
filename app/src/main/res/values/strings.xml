@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Data Center Toolkit</string>
+    <string name="calc">Calculate</string>
+    <string name="power_yr">Annual Power Usage:</string>
+    <string name="cost_yr">Annual Power Cost:</string>
+    <string name="carbon_yr">Annual Carbon Footprint:</string>
+    <string name="one_year">1 Year: </string>
+    <string name="five_year">5 Years: </string>
+    <string name="ten_year">10 Years: </string>
+    <string name="dollarSn">$</string>
+</resources>
