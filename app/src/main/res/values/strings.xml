@@ -8,4 +8,7 @@
     <string name="five_year">5 Years: </string>
     <string name="ten_year">10 Years: </string>
     <string name="dollarSn">$</string>
+    <string name="kW">" kW"</string>
+    <string name="dollarSign">$</string>
+    <string name="txtTons">" Tons"</string>
 </resources>

@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import java.io.*;
 import java.text.DecimalFormat;
+import java.util.Locale;
 
 
 public class PueActivity extends MainActivity {
@@ -64,7 +65,7 @@ public class PueActivity extends MainActivity {
                 statePosition = position;
                 getStateSelect(statePosition);
                 stateCost = Double.parseDouble(getStates(spinnerId, ','));
-                txtOverrideState.setText(stateCost.toString());
+                txtOverrideState.setText(String.format(Locale.getDefault(), "%.2f", stateCost));
                 System.out.println(stateCost);
             }
             @Override
@@ -97,7 +98,7 @@ public class PueActivity extends MainActivity {
                 if (!isChecked) {
                     spinnerState.setEnabled(true);
                     txtOverrideState.setEnabled(false);
-                    txtOverrideState.setText(stateCost.toString());
+                    txtOverrideState.setText(String.format(Locale.getDefault(), "%.2f", stateCost));
                 }
             }
         });
@@ -126,9 +127,9 @@ public class PueActivity extends MainActivity {
             totalFac = Double.parseDouble(txtTotalFac.getText().toString());
             totalIt = Double.parseDouble(txtTotalIt.getText().toString());
             dblPUE = totalFac / totalIt;
-            strPUE = String.format("%.2f", dblPUE);
+            strPUE = String.format(Locale.getDefault(), "%.2f", dblPUE);
             dblDcie = (totalIt / totalFac) * 100;
-            strDcie = String.format("%.2f", dblDcie) + "%";
+            strDcie = String.format(Locale.getDefault(), "%.2f", dblDcie) + "%";
 
             //Set PUE and DCiE
             txtPueTotal.setText(strPUE);
@@ -136,7 +137,7 @@ public class PueActivity extends MainActivity {
             //Set Total Power/Year
             totalPower = totalFac * 8760;
             String strTotalPower = formatter.format(totalPower);
-            txtTotalPower.setText(strTotalPower + " kW");
+            txtTotalPower.setText(strTotalPower + getString(R.string.kW));
             //Set Total Cost/Year
             if(chkOverrideState.isChecked()) {
                 if (txtOverrideState.getText().toString().isEmpty())
@@ -146,11 +147,11 @@ public class PueActivity extends MainActivity {
             else
                 totalCost = totalFac * 8760 * stateCost;
             String strTotalCost = formatter.format(totalCost);
-            txtTotalCost.setText("$" + strTotalCost);
+            txtTotalCost.setText(getString(R.string.dollarSign) + strTotalCost);
             //Set Total Emissions/Year
             emissions = (totalPower * 1.21) / 2000;
             String strEmissions = formatter.format(emissions);
-            txtEmission.setText(strEmissions + " Tons");
+            txtEmission.setText(strEmissions + getString(R.string.txtTons));
             //Delay the scroll to allow for softkey close
             final Handler scrollDelay = new Handler();
             scrollDelay.postDelayed(new Runnable() {
