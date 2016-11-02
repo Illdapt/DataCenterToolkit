@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by nicktuttle on 8/3/2016.
  */
-public class Calculate {
+public class Calculator {
 
     public ArrayList calcPue (String num1, String num2, Boolean chk, String num3){
         ArrayList pueArray = null;
