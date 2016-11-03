@@ -70,18 +70,24 @@ public class Calculator {
         double elecTotal10yr = finalElec * 10;
         String selecTotal10yr = String.format(Locale.getDefault(), "%.2f", elecTotal10yr);
         results.add(selecTotal10yr);
-//        double moneyTotal5yr = finalMoney * 5;
-//        results.add(moneyTotal5yr);
-//        double moneyTotal10yr = finalMoney * 10;
-//        results.add(moneyTotal10yr);
-//        double emissionTotal5yr = finalEmission * 5;
-//        results.add(emissionTotal5yr);
-//        double emissionTotal10yr = finalEmission * 10;
-//        results.add(emissionTotal10yr);
-//        double carTotal5yr = finalCar * 5;
-//        results.add(carTotal5yr);
-//        double carTotal10yr = finalCar * 10;
-//        results.add(carTotal10yr);
+        double moneyTotal5yr = finalMoney * 5;
+        String smoneyTotal5yr = String.format(Locale.getDefault(), "%.2f", moneyTotal5yr);
+        results.add(smoneyTotal5yr);
+        double moneyTotal10yr = finalMoney * 10;
+        String smoneyTotal10yr = String.format(Locale.getDefault(), "%.2f", moneyTotal10yr);
+        results.add(smoneyTotal10yr);
+        double emissionTotal5yr = finalEmission * 5;
+        String semissionTotal5yr = String.format(Locale.getDefault(), "%.2f", emissionTotal5yr);
+        results.add(semissionTotal5yr);
+        double emissionTotal10yr = finalEmission * 10;
+        String semissionTotal10yr = String.format(Locale.getDefault(), "%.2f", emissionTotal10yr);
+        results.add(semissionTotal10yr);
+        double carTotal5yr = finalCar * 5;
+        String scarTotal5yr = String.format(Locale.getDefault(), "%.2f", carTotal5yr);
+        results.add(scarTotal5yr);
+        double carTotal10yr = finalCar * 10;
+        String scarTotal10yr = String.format(Locale.getDefault(), "%.2f", carTotal10yr);
+        results.add(scarTotal10yr);
 
         return results;
     }

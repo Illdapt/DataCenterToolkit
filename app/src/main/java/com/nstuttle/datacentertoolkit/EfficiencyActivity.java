@@ -25,6 +25,15 @@ public class EfficiencyActivity extends MainActivity {
         txtElec1 = (TextView) findViewById(R.id.txtElec1);
         txtElec2 = (TextView) findViewById(R.id.txtElec2);
         txtElec3 = (TextView) findViewById(R.id.txtElec3);
+        txtCost1 = (TextView) findViewById(R.id.txtCost1);
+        txtCost2 = (TextView) findViewById(R.id.txtCost2);
+        txtCost3 = (TextView) findViewById(R.id.txtCost3);
+        txtCarbon1 = (TextView) findViewById(R.id.txtCarbon1);
+        txtCarbon2 = (TextView) findViewById(R.id.txtCarbon2);
+        txtCarbon3 = (TextView) findViewById(R.id.txtCarbon3);
+        txtCars1 = (TextView) findViewById(R.id.txtCars1);
+        txtCars2 = (TextView) findViewById(R.id.txtCars2);
+        txtCars3 = (TextView) findViewById(R.id.txtCars3);
         txtDesiredPue = (EditText) findViewById(R.id.txtDesiredPue);
         scrollEff = (ScrollView) findViewById(R.id.scrollEff);
         Button btnCalcSave = (Button) findViewById(R.id.btnCalcSave);
@@ -47,6 +56,15 @@ public class EfficiencyActivity extends MainActivity {
                     txtElec1.setText(effResults.get(0));
                     txtElec2.setText(effResults.get(4));
                     txtElec3.setText(effResults.get(5));
+                    txtCost1.setText(effResults.get(1));
+                    txtCost2.setText(effResults.get(6));
+                    txtCost3.setText(effResults.get(7));
+                    txtCarbon1.setText(effResults.get(2));
+                    txtCarbon2.setText(effResults.get(8));
+                    txtCarbon3.setText(effResults.get(9));
+                    txtCars1.setText(effResults.get(3));
+                    txtCars2.setText(effResults.get(10));
+                    txtCars3.setText(effResults.get(11));
                     scroll();
                 } catch (Exception e){
                     String message = e.getMessage();
