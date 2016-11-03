@@ -34,8 +34,10 @@ public class GlossaryActivity extends MainActivity {
     }
 
     public void getGlossary(){
-        String[] info = {""};
+        String[] info = {""}; // For Terms
+        String[] info2 = {""}; // For Definitions
         List<String> infoList = new ArrayList<String>();
+        List<String> infoList2 = new ArrayList<String>();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(getAssets().open("glossary.txt")));
             // Read
@@ -43,6 +45,7 @@ public class GlossaryActivity extends MainActivity {
             while (line != null) {
                 info = line.split(":");
                 infoList.add(info[0]);
+                infoList2.add(info[1]);
                 line = reader.readLine();
             }
             ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, infoList);
