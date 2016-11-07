@@ -67,8 +67,6 @@ public class EfficiencyActivity extends MainActivity {
                     txtCars3.setText(effResults.get(11));
                     scroll();
                 } catch (Exception e){
-                    String message = e.getMessage();
-                    //showAlert(message);
                 }
             }
         });

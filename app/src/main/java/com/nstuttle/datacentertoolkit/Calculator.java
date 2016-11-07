@@ -1,95 +1,114 @@
+/* The Calculator Class handles all calculation operations for the Data Center Toolkit. This Class
+houses both basic(add, subtract, etc) and advanced(PUE, Thermal, Electric, etc) calculator
+functionality*/
+
 package com.nstuttle.datacentertoolkit;
 
-import java.lang.reflect.Array;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.view.ContextThemeWrapper;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
-/**
- * Created by nicktuttle on 8/3/2016.
- */
-public class Calculator {
+class Calculator {
+    private DecimalFormat formatter = new DecimalFormat("#,###,###,###.##");
 
+    //Methods
     public double add(double x, double y) {
-        double sum = x + y;
-        return sum;
+        return x + y;
     }
 
     public double subtract(double x, double y) {
-        double diff = x - y;
-        return diff;
+        return x - y;
     }
 
     public double multiply(double x, double y) {
-        double res = x * y;
-        return res;
+        return x * y;
     }
 
     public double divide(double x, double y) {
-        double res = x / y;
-        return res;
+        return x / y;
     }
 
-    public ArrayList<Double> pueCalc(double totalFac, double totalIt) {
-        ArrayList<Double> results = new ArrayList<Double>();
-        double pue = totalFac / totalIt;
-        results.add(pue);
-        double dcie = (totalIt / totalFac) * 100;
-        results.add(dcie);
+    public ArrayList<String> pueCalc(double totalFac, double totalIt, double kwCost) {
+        ArrayList<String> results = new ArrayList<>(); //Instantiate result Array
+        //Do Calcs
+        double pue = divide(totalFac, totalIt);
+        double dcie = divide(totalIt, totalFac) * 100;
+        double totalPower = multiply(totalFac, 8760);
+        double totalCost = multiply(multiply(totalFac, 8760), kwCost);
+        double emissions = divide(multiply(totalPower, 1.21), 2000);
+        //Format Results
+        String sPue = String.format(Locale.getDefault(), "%.2f", pue);
+        String sDcie = String.format(Locale.getDefault(), "%.2f", dcie);
+        String sTotalPower = formatter.format(totalPower);
+        String sTotalCost = formatter.format(totalCost);
+        String sEmissions = formatter.format(emissions);
+        //Set Array
+        results.add(sPue);
+        results.add(sDcie);
+        results.add(sTotalPower);
+        results.add(sTotalCost);
+        results.add(sEmissions);
+        //Return Array
         return results;
     }
 
     public ArrayList<String> effCalc(double curPue, double desPue, double totalIt, double kwCost) {
-        ArrayList<String> results = new ArrayList<String>();
-        double totalFac = totalIt * curPue;
-        double totalFac2 = totalIt * desPue;
-        double elecTotal = totalFac * 8760;
-        double elecTotal2 = totalFac2 * 8760;
-        double moneyTotal = kwCost * elecTotal;
-        double moneyTotal2 = kwCost * elecTotal2;
-        double emissionTotal = (elecTotal * 1.21) / 2000;
-        double emissionTotal2 = (elecTotal2 * 1.21) / 2000;
-        double carTotal = emissionTotal / 5.30;
-        double carTotal2 = emissionTotal2 / 5.30;
-
-        double finalElec = elecTotal - elecTotal2;
-        String sfinalElec = String.format(Locale.getDefault(), "%.2f", finalElec);
+        ArrayList<String> results = new ArrayList<String>(); //Instantiate result Array
+        //Do Calcs
+        double totalFac = multiply(totalIt, curPue);
+        double totalFac2 = multiply(totalIt, desPue);
+        double elecTotal = multiply(totalFac, 8760);
+        double elecTotal2 = multiply(totalFac2, 8760);
+        double moneyTotal = multiply(kwCost, elecTotal);
+        double moneyTotal2 = multiply(kwCost, elecTotal2);
+        double emissionTotal = divide(multiply(elecTotal, 1.21), 2000);
+        double emissionTotal2 = divide(multiply(elecTotal2, 1.21), 2000);
+        double carTotal = divide(emissionTotal, 5.30);
+        double carTotal2 = divide(emissionTotal2, 5.30);
+        double finalElec = subtract(elecTotal, elecTotal2);
+        double finalMoney = subtract(moneyTotal, moneyTotal2);
+        double finalEmission = subtract(emissionTotal, emissionTotal2);
+        double finalCar = subtract(carTotal, carTotal2);
+        double elecTotal5yr = multiply(finalElec, 5);
+        double elecTotal10yr = multiply(finalElec, 10);
+        double moneyTotal5yr = multiply(finalMoney, 5);
+        double moneyTotal10yr = multiply(finalMoney, 10);
+        double emissionTotal5yr = multiply(finalEmission, 5);
+        double emissionTotal10yr = multiply(finalEmission, 10);
+        double carTotal5yr = multiply(finalCar, 5);
+        double carTotal10yr = multiply(finalCar, 10);
+        //Format Results
+        String sfinalElec = formatter.format(finalElec);
+        String sfinalMoney = formatter.format(finalMoney);
+        String sfinalEmission = formatter.format(finalEmission);
+        String sfinalCar = formatter.format(finalCar);
+        String selecTotal5yr = formatter.format(elecTotal5yr);
+        String selecTotal10yr = formatter.format(elecTotal10yr);
+        String smoneyTotal5yr = formatter.format(moneyTotal5yr);
+        String smoneyTotal10yr = formatter.format(moneyTotal10yr);
+        String semissionTotal5yr = formatter.format(emissionTotal5yr);
+        String semissionTotal10yr = formatter.format(emissionTotal10yr);
+        String scarTotal5yr = formatter.format(carTotal5yr);
+        String scarTotal10yr = formatter.format(carTotal10yr);
+        //Set Array
         results.add(sfinalElec);
-        double finalMoney = moneyTotal - moneyTotal2;
-        String sfinalMoney = String.format(Locale.getDefault(), "%.2f", finalMoney);
         results.add(sfinalMoney);
-        double finalEmission = emissionTotal - emissionTotal2;
-        String sfinalEmission = String.format(Locale.getDefault(), "%.2f", finalEmission);
         results.add(sfinalEmission);
-        double finalCar = carTotal - carTotal2;
-        String sfinalCar = String.format(Locale.getDefault(), "%.2f", finalCar);
         results.add(sfinalCar);
-        double elecTotal5yr = finalElec * 5;
-        String selecTotal5yr = String.format(Locale.getDefault(), "%.2f", elecTotal5yr);
         results.add(selecTotal5yr);
-        double elecTotal10yr = finalElec * 10;
-        String selecTotal10yr = String.format(Locale.getDefault(), "%.2f", elecTotal10yr);
         results.add(selecTotal10yr);
-        double moneyTotal5yr = finalMoney * 5;
-        String smoneyTotal5yr = String.format(Locale.getDefault(), "%.2f", moneyTotal5yr);
         results.add(smoneyTotal5yr);
-        double moneyTotal10yr = finalMoney * 10;
-        String smoneyTotal10yr = String.format(Locale.getDefault(), "%.2f", moneyTotal10yr);
         results.add(smoneyTotal10yr);
-        double emissionTotal5yr = finalEmission * 5;
-        String semissionTotal5yr = String.format(Locale.getDefault(), "%.2f", emissionTotal5yr);
         results.add(semissionTotal5yr);
-        double emissionTotal10yr = finalEmission * 10;
-        String semissionTotal10yr = String.format(Locale.getDefault(), "%.2f", emissionTotal10yr);
         results.add(semissionTotal10yr);
-        double carTotal5yr = finalCar * 5;
-        String scarTotal5yr = String.format(Locale.getDefault(), "%.2f", carTotal5yr);
         results.add(scarTotal5yr);
-        double carTotal10yr = finalCar * 10;
-        String scarTotal10yr = String.format(Locale.getDefault(), "%.2f", carTotal10yr);
         results.add(scarTotal10yr);
-
+        //Return Array
         return results;
     }
-
 }
