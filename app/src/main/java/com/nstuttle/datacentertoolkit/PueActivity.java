@@ -17,7 +17,7 @@ import java.util.Locale;
 
 public class PueActivity extends MainActivity {
     //Declarations
-    Double totalFac, totalIt, totalPower, totalCost, dblPUE, dblDcie, emissions, kwCost;
+    Double totalFac, totalIt, kwCost;
     private TextView txtPueTotal, txtDCie, txtTotalPower, txtTotalCost, txtEmission;
     private EditText txtTotalFac, txtTotalIt, txtOverrideState;
     private CheckBox chkOverrideState;
@@ -115,7 +115,6 @@ public class PueActivity extends MainActivity {
                             scrollPue.smoothScrollTo(0, 530);// Scroll Page After Calc
                         }
                     }, 500);
-                    //calcPue();
                 } catch (Exception e){
                     String message = e.getMessage();
                     showAlert(message);
@@ -201,7 +200,6 @@ public class PueActivity extends MainActivity {
                 .setMessage(type)
                 .setIcon(android.R.drawable.ic_dialog_alert).setTitle("Oops!")
                 .setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
-
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

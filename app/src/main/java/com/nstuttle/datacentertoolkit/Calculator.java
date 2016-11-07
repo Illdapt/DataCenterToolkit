@@ -4,11 +4,6 @@ functionality*/
 
 package com.nstuttle.datacentertoolkit;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.view.ContextThemeWrapper;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -109,6 +104,23 @@ class Calculator {
         results.add(scarTotal5yr);
         results.add(scarTotal10yr);
         //Return Array
+        return results;
+    }
+
+    public ArrayList<String> thermalCalc(double totalIt, String cvtTo) {
+        ArrayList<String> results = new ArrayList<String>(); //Instantiate result Array
+        //Do Calcs
+        if (cvtTo.equals("W")) {
+            totalIt = totalIt * 3.412142;
+            String sTotalBtu = formatter.format(totalIt);
+            results.add(sTotalBtu);
+        }
+        if (cvtTo.equals("kW")) {
+            totalIt = totalIt * 3412.14;
+            String sTotalBtu = formatter.format(totalIt);
+            results.add(sTotalBtu);
+        }
+        //Return Results
         return results;
     }
 }
