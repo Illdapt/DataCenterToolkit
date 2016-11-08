@@ -10,7 +10,7 @@ import android.widget.*;
 
 public class MainActivity extends AppCompatActivity {
 
-    String[] menuArray = {"PUE Calculator","Efficiency Savings Calculator","Thermal Calculator","Power Calculator","Basic Calculator","News Stand and Blog","Flashlight", "Glossary"};
+    String[] menuArray = {"PUE Calculator", "Efficiency Savings Calculator", "Thermal Calculator", "Power Calculator", "Basic Calculator", "News Stand and Blog", "Flashlight", "Glossary", "AWG to mm"};
     private Flashlight flashlight = new Flashlight();
 
     @Override
@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
                         if (position == 7) {
                             Intent glossaryIntent = new Intent(view.getContext(), GlossaryActivity.class);
                             startActivity(glossaryIntent);
+                        }
+                        if (position == 8) {
+                            Intent cableCvtIntent = new Intent(view.getContext(), CableCvtActivity.class);
+                            startActivity(cableCvtIntent);
                         }
                     }
                 }

@@ -123,4 +123,12 @@ class Calculator {
         //Return Results
         return results;
     }
+
+    public double awgToMm(int awg) {
+        float base = 92;
+        double ex = (1.0 * 36 - awg) / 39;
+        double res = Math.pow(base, ex);
+        double mm = 0.127 * res;
+        return mm;
+    }
 }

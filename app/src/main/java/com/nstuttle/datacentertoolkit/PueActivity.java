@@ -106,7 +106,7 @@ public class PueActivity extends MainActivity {
                     txtTotalPower.setText(pueResults.get(2) + getString(R.string.kW));
                     txtTotalCost.setText(getString(R.string.dollarSign) + pueResults.get(3));
                     txtEmission.setText(pueResults.get(4) + getString(R.string.txtTons));
-
+                    System.out.println("AWG 1 = " + calc.awgToMm(1) + " mm");
                     //Delay the scroll to allow for softkey close
                     final Handler scrollDelay = new Handler();
                     scrollDelay.postDelayed(new Runnable() {

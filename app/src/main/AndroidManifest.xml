@@ -57,6 +57,9 @@
             android:name=".GlossaryActivity"
             android:label="Glossary Of Terms" >
         </activity>
+        <activity
+            android:name=".CableCvtActivity"
+            android:label="AWG Converter"></activity>
     </application>
 
 </manifest>
