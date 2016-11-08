@@ -1,6 +1,9 @@
 package com.nstuttle.datacentertoolkit;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -35,7 +38,7 @@ public class CableCvtActivity extends MainActivity {
         for (int i = 0; i < 41; i++) {
             spinnerArray.add(String.valueOf(i));
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, spinnerArray);
         spinnerAWG.setAdapter(adapter);
 
@@ -45,21 +48,42 @@ public class CableCvtActivity extends MainActivity {
             public void onClick(View v) {
                 try {
                     String spinTxt = spinnerAWG.getSelectedItem().toString();
-                    if (spinTxt == "0000")
-                        awgSelect = -3;
-                    else if (spinTxt == "000")
-                        awgSelect = -2;
-                    else if (spinTxt == "00")
-                        awgSelect = -1;
-                    else
-                        awgSelect = Integer.parseInt(spinTxt);
+                    switch (spinTxt) {
+                        case "0000":
+                            awgSelect = -3;
+                            break;
+                        case "000":
+                            awgSelect = -2;
+                            break;
+                        case "00":
+                            awgSelect = -1;
+                            break;
+                        default:
+                            awgSelect = Integer.parseInt(spinTxt);
+                            break;
+                    }
                     System.out.println(awgSelect);
                     awgResults = calc.awgToMm(awgSelect) + " " + getString(R.string.mm);
                     txtCvtAWG.setText(awgResults);
                 } catch (Exception e) {
-
+                    String message = e.getMessage();
+                    showAlert(message);
                 }
             }
         });
+    }
+
+    //Alert Dialog Function
+    private void showAlert(String type) {
+        ContextThemeWrapper ctw = new ContextThemeWrapper(this, R.style.AppTheme);
+        new AlertDialog.Builder(ctw)
+                .setMessage(type)
+                .setIcon(android.R.drawable.ic_dialog_alert).setTitle("Oops!")
+                .setPositiveButton("Got it!", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 }

@@ -12,4 +12,10 @@
     <string name="dollarSign">$</string>
     <string name="txtTons">" Tons"</string>
     <string name="mm">mm</string>
+    <string name="total_it_load">Total IT Load</string>
+    <string name="calculate">Calculate</string>
+    <string name="thermal_explainer">Thermal Calculator allows you to enter your total equipment kW or W, returning an estimated BTU/h output of heat. This figure may help when determining the proper amount of cooling needed to maintain the target temperature for your IT equipment.</string>
+    <string name="kwOutput">%s kW</string>
+    <string name="dollarOutput">$%s</string>
+    <string name="tonOutput">%s Tons</string>
 </resources>

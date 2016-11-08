@@ -1,7 +1,6 @@
 package com.nstuttle.datacentertoolkit;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.*;
 import java.io.*;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -20,7 +18,6 @@ public class PueActivity extends MainActivity {
     Double totalFac, totalIt, kwCost;
     private TextView txtPueTotal, txtDCie, txtTotalPower, txtTotalCost, txtEmission;
     private EditText txtTotalFac, txtTotalIt, txtOverrideState;
-    private CheckBox chkOverrideState;
     private ScrollView scrollPue;
     private Spinner spinnerState;
     private Integer statePosition;
@@ -35,9 +32,8 @@ public class PueActivity extends MainActivity {
 
     ArrayList<String> pueResults;
     private Calculator calc = new Calculator();
-    DecimalFormat formatter = new DecimalFormat("#,###,###,###.##");
 
-
+    //onCreate Function
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pue);
@@ -54,11 +50,11 @@ public class PueActivity extends MainActivity {
         Button btnToEffAct = (Button) findViewById(R.id.btnToEffAct);
         spinnerState = (Spinner) findViewById(R.id.spinnerState);
         txtOverrideState = (EditText) findViewById(R.id.txtOverrideState);
-        chkOverrideState = (CheckBox) findViewById(R.id.chkOverrideState);
+        CheckBox chkOverrideState = (CheckBox) findViewById(R.id.chkOverrideState);
         scrollPue = (ScrollView) findViewById(R.id.scrollPue);
 
         try {
-            BufferedReader statesreader = new BufferedReader(new InputStreamReader(getAssets().open("states.txt")));
+            new BufferedReader(new InputStreamReader(getAssets().open("states.txt")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -103,9 +99,9 @@ public class PueActivity extends MainActivity {
                     //Set Results
                     txtPueTotal.setText(pueResults.get(0));
                     txtDCie.setText(pueResults.get(1));
-                    txtTotalPower.setText(pueResults.get(2) + getString(R.string.kW));
-                    txtTotalCost.setText(getString(R.string.dollarSign) + pueResults.get(3));
-                    txtEmission.setText(pueResults.get(4) + getString(R.string.txtTons));
+                    txtTotalPower.setText(getString(R.string.kwOutput, pueResults.get(2)));
+                    txtTotalCost.setText(getString(R.string.dollarOutput, pueResults.get(3)));
+                    txtEmission.setText(getString(R.string.tonOutput, pueResults.get(4)));
                     //Delay the scroll to allow for softkey close
                     final Handler scrollDelay = new Handler();
                     scrollDelay.postDelayed(new Runnable() {

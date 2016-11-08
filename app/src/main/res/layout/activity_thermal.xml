@@ -5,14 +5,14 @@
     android:id="@+id/scrollPue">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Thermal Calculator allows you to enter your total equipment kW or W, returning an estimated BTU/h output of heat. This figure may help when determining the proper amount of cooling needed to maintain the target temperature for your IT equipment. "
+        android:text="@string/thermal_explainer"
         android:id="@+id/textView3"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="20dp"
@@ -32,16 +32,19 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/txtTotalIt"
-            android:hint="Total IT Load"
+            android:hint="@string/total_it_load"
             android:layout_weight="0.20"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="30dp"
+            android:layout_marginStart="30dp" />
 
         <Spinner
             android:layout_width="57dp"
             android:layout_height="49dp"
             android:id="@+id/spinnerWkW"
             android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_weight="0.60" />
 
     </LinearLayout>
@@ -49,7 +52,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Calculate"
+        android:text="@string/calculate"
         android:id="@+id/btnKwBtu"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp" />
