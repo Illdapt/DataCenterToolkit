@@ -9,26 +9,27 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 class Calculator {
-    private DecimalFormat formatter = new DecimalFormat("#,###,###,###.##");
+    private DecimalFormat formatterTwo = new DecimalFormat("#,###,###,###.##");
+    private DecimalFormat formatterFour = new DecimalFormat("#,###,###,###.####");
 
     //Methods
-    public double add(double x, double y) {
+    double add(double x, double y) {
         return x + y;
     }
 
-    public double subtract(double x, double y) {
+    double subtract(double x, double y) {
         return x - y;
     }
 
-    public double multiply(double x, double y) {
+    double multiply(double x, double y) {
         return x * y;
     }
 
-    public double divide(double x, double y) {
+    double divide(double x, double y) {
         return x / y;
     }
 
-    public ArrayList<String> pueCalc(double totalFac, double totalIt, double kwCost) {
+    ArrayList<String> pueCalc(double totalFac, double totalIt, double kwCost) {
         ArrayList<String> results = new ArrayList<>(); //Instantiate result Array
         //Do Calcs
         double pue = divide(totalFac, totalIt);
@@ -39,9 +40,9 @@ class Calculator {
         //Format Results
         String sPue = String.format(Locale.getDefault(), "%.2f", pue);
         String sDcie = String.format(Locale.getDefault(), "%.2f", dcie);
-        String sTotalPower = formatter.format(totalPower);
-        String sTotalCost = formatter.format(totalCost);
-        String sEmissions = formatter.format(emissions);
+        String sTotalPower = formatterTwo.format(totalPower);
+        String sTotalCost = formatterTwo.format(totalCost);
+        String sEmissions = formatterTwo.format(emissions);
         //Set Array
         results.add(sPue);
         results.add(sDcie);
@@ -52,8 +53,8 @@ class Calculator {
         return results;
     }
 
-    public ArrayList<String> effCalc(double curPue, double desPue, double totalIt, double kwCost) {
-        ArrayList<String> results = new ArrayList<String>(); //Instantiate result Array
+    ArrayList<String> effCalc(double curPue, double desPue, double totalIt, double kwCost) {
+        ArrayList<String> results = new ArrayList<>(); //Instantiate result Array
         //Do Calcs
         double totalFac = multiply(totalIt, curPue);
         double totalFac2 = multiply(totalIt, desPue);
@@ -78,18 +79,18 @@ class Calculator {
         double carTotal5yr = multiply(finalCar, 5);
         double carTotal10yr = multiply(finalCar, 10);
         //Format Results
-        String sfinalElec = formatter.format(finalElec);
-        String sfinalMoney = formatter.format(finalMoney);
-        String sfinalEmission = formatter.format(finalEmission);
-        String sfinalCar = formatter.format(finalCar);
-        String selecTotal5yr = formatter.format(elecTotal5yr);
-        String selecTotal10yr = formatter.format(elecTotal10yr);
-        String smoneyTotal5yr = formatter.format(moneyTotal5yr);
-        String smoneyTotal10yr = formatter.format(moneyTotal10yr);
-        String semissionTotal5yr = formatter.format(emissionTotal5yr);
-        String semissionTotal10yr = formatter.format(emissionTotal10yr);
-        String scarTotal5yr = formatter.format(carTotal5yr);
-        String scarTotal10yr = formatter.format(carTotal10yr);
+        String sfinalElec = formatterTwo.format(finalElec);
+        String sfinalMoney = formatterTwo.format(finalMoney);
+        String sfinalEmission = formatterTwo.format(finalEmission);
+        String sfinalCar = formatterTwo.format(finalCar);
+        String selecTotal5yr = formatterTwo.format(elecTotal5yr);
+        String selecTotal10yr = formatterTwo.format(elecTotal10yr);
+        String smoneyTotal5yr = formatterTwo.format(moneyTotal5yr);
+        String smoneyTotal10yr = formatterTwo.format(moneyTotal10yr);
+        String semissionTotal5yr = formatterTwo.format(emissionTotal5yr);
+        String semissionTotal10yr = formatterTwo.format(emissionTotal10yr);
+        String scarTotal5yr = formatterTwo.format(carTotal5yr);
+        String scarTotal10yr = formatterTwo.format(carTotal10yr);
         //Set Array
         results.add(sfinalElec);
         results.add(sfinalMoney);
@@ -107,28 +108,31 @@ class Calculator {
         return results;
     }
 
-    public ArrayList<String> thermalCalc(double totalIt, String cvtTo) {
-        ArrayList<String> results = new ArrayList<String>(); //Instantiate result Array
+    ArrayList<String> thermalCalc(double totalIt, String cvtTo) {
+        ArrayList<String> results = new ArrayList<>(); //Instantiate result Array
         //Do Calcs
         if (cvtTo.equals("W")) {
             totalIt = totalIt * 3.412142;
-            String sTotalBtu = formatter.format(totalIt);
+            String sTotalBtu = formatterTwo.format(totalIt);
             results.add(sTotalBtu);
         }
         if (cvtTo.equals("kW")) {
             totalIt = totalIt * 3412.14;
-            String sTotalBtu = formatter.format(totalIt);
+            String sTotalBtu = formatterTwo.format(totalIt);
             results.add(sTotalBtu);
         }
         //Return Results
         return results;
     }
 
-    public double awgToMm(int awg) {
+    String awgToMm(int awg) {
+        //Do Calcs
         float base = 92;
         double ex = (1.0 * 36 - awg) / 39;
         double res = Math.pow(base, ex);
         double mm = 0.127 * res;
-        return mm;
+        //Format Results
+        //Return Results
+        return formatterFour.format(mm);
     }
 }

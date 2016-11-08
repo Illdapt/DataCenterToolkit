@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="The AWG Converter calculates the millimeter and inch dimensions of common AWG gauge cables. This information helps preparation, planning and succees when undertaking a new project requiring cable management, cabling, server racks, or data center redesign with limited available space or specific sizing requirements."
+            android:text="The AWG Converter calculates the millimeter and inch dimensions of common AWG gauge cables. This information helps preparation, planning and succees when undertaking a new project requiring cable management, cabling, server racks, or data center redesign with required cabling capacity, limited space or specific sizing requirements."
             android:id="@+id/textView3"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"

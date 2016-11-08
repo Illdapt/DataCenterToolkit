@@ -11,4 +11,5 @@
     <string name="kW">" kW"</string>
     <string name="dollarSign">$</string>
     <string name="txtTons">" Tons"</string>
+    <string name="mm">mm</string>
 </resources>

@@ -17,7 +17,7 @@ public class CableCvtActivity extends MainActivity {
     //Declarations
     Spinner spinnerAWG;
     private Calculator calc = new Calculator();
-    private double awgResults;
+    private String awgResults;
     private int awgSelect;
     private TextView txtCvtAWG;
 
@@ -54,13 +54,12 @@ public class CableCvtActivity extends MainActivity {
                     else
                         awgSelect = Integer.parseInt(spinTxt);
                     System.out.println(awgSelect);
-                    awgResults = calc.awgToMm(awgSelect);
-                    txtCvtAWG.setText(String.valueOf(awgResults));
+                    awgResults = calc.awgToMm(awgSelect) + " " + getString(R.string.mm);
+                    txtCvtAWG.setText(awgResults);
                 } catch (Exception e) {
 
                 }
             }
         });
-
     }
 }
